@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICT SMC AI Trading</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080d16;color:#eaf0fa;font-family:Arial,sans-serif}
+header{padding:22px;background:#111a29;border-bottom:1px solid #26344a}
+h2{margin:0;color:#53a5ff}
+small{color:#8998ad}
+main{padding:16px;max-width:900px;margin:auto}
+.card{background:#111a29;border:1px solid #263750;border-radius:13px;padding:17px;margin:14px 0}
+h3{color:#67adff;margin-top:0}
+select,input,button{width:100%;padding:13px;margin:7px 0;background:#0a1220;color:white;border:1px solid #354761;border-radius:8px;font-size:15px}
+button{background:#1677dc;border:0;font-weight:bold;cursor:pointer}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.green{color:#24d69a}.red{color:#ff6574}
+.result{line-height:1.8;color:#c5d1e2}
+footer{text-align:center;color:#8290a5;padding:25px}
+</style>
+</head>
+<body>
+<header>
+<h2>◈ ICT SMC AI TRADING</h2>
+<small>Private Institutional Trading Dashboard</small>
+</header>
+<main>
+<div class="card">
+<h3>Market Scanner</h3>
+<div class="grid">
+<select id="asset">
+<option>XAUUSD</option>
+<option>EURUSD</option>
+<option>BTCUSD</option>
+</select>
+<select id="tf">
+<option>5 Minutes</option>
+<option>1 Minute</option>
+<option>15 Minutes</option>
+<option>1 Hour</option>
+</select>
+</div>
+</div>
+
+<div class="card">
+<h3>Market Structure</h3>
+<select id="bias">
+<option>Bullish</option>
+<option>Bearish</option>
+<option>Neutral</option>
+</select>
+<select id="structure">
+<option>BOS - Break of Structure</option>
+<option>CHoCH - Change of Character</option>
+<option>No confirmation</option>
+</select>
+</div>
+
+<div class="card">
+<h3>Liquidity Analysis</h3>
+<select id="liquidity">
+<option>Buy-side Liquidity (BSL)</option>
+<option>Sell-side Liquidity (SSL)</option>
+<option>Liquidity Sweep</option>
+<option>No clear liquidity</option>
+</select>
+<select id="footprint">
+<option>Fair Value Gap (FVG)</option>
+<option>Order Block (OB)</option>
+<option>Breaker Block</option>
+<option>No confirmation</option>
+</select>
+</div>
+
+<div class="card">
+<h3>Trade Setup</h3>
+<div class="grid">
+<div><small>Entry Price</small><input id="entry" type="number" placeholder="Entry"></div>
+<div><small>Stop Loss</small><input id="sl" type="number" placeholder="Stop Loss"></div>
+<div><small>Take Profit</small><input id="tp" type="number" placeholder="Take Profit"></div>
+<div><small>Risk (%)</small><input id="risk" type="number" value="1"></div>
+</div>
+<button onclick="analyze()">GENERATE ANALYSIS</button>
+<div id="output" class="result"></div>
+</div>
+
+<div class="card">
+<h3>Trading Instruments</h3>
+<p>🟡 XAUUSD — Gold</p>
+<p>💶 EURUSD — Forex</p>
+<p>₿ BTCUSD — Bitcoin</p>
+</div>
+
+<footer>ICT + SMC Trading Dashboard<br>Private Project · Version 1.0</footer>
+</main>
+<script>
+function analyze(){
+let asset=document.getElementById('asset').value;
+let bias=document.getElementById('bias').value;
+let structure=document.getElementById('structure').value;
+let liquidity=document.getElementById('liquidity').value;
+let footprint=document.getElementById('footprint').value;
+let entry=document.getElementById('entry').value;
+let sl=document.getElementById('sl').value;
+let tp=document.getElementById('tp').value;
+let risk=document.getElementById('risk').value;
+if(!entry||!sl||!tp){
+alert("Please enter Entry, SL and TP.");
+return;
+}
+document.getElementById('output').innerHTML=
+"<hr><h3>Analysis Report</h3>"+
+"<p>Asset: "+asset+"</p>"+
+"<p>Bias: "+bias+"</p>"+
+"<p>Structure: "+structure+"</p>"+
+"<p>Liquidity: "+liquidity+"</p>"+
+"<p>Institutional Footprint: "+footprint+"</p>"+
+"<p>Entry: "+entry+"</p>"+
+"<p>Stop Loss: "+sl+"</p>"+
+"<p>Take Profit: "+tp+"</p>"+
+"<p>Risk: "+risk+"%</p>"+
+"<p class='green'>Analysis form generated. Verify all conditions before trading.</p>";
+}
+</script>
+</body>
+</html>
